@@ -1,0 +1,41 @@
+version: '3.9'
+
+services:
+  mongo:
+    container_name: ms_mongo
+    image: mongo:latest
+    ports:
+      - '27017:27017'
+    volumes:
+      - ./mongo/db:/data/db
+
+  nginx:
+    build: ./nginx
+    container_name: ms_nginx
+    depends_on:
+      - store
+      - users
+    ports:
+      - '80:80'
+      # - "3000:80"
+
+  store:
+    build: ./store
+    container_name: ms_store
+    depends_on:
+      - mongo
+    volumes:
+      - ./store/src/app:/usr/src/app
+    ports:
+      - "3004:3000"
+
+  users: 
+    build: ./users
+    container_name: ms_users
+    depends_on:
+      - mongo
+    volumes:
+      - './users/src/app:/usr/src/app'
+    ports:
+      - "3006:3000"
+
