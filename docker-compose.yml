@@ -2,7 +2,6 @@ version: '3.9'
 
 services:
   mongo:
-    container_name: ms_mongo
     image: mongo:latest
     ports:
       - '27017:27017'
@@ -18,6 +17,19 @@ services:
     ports:
       - '80:80'
       # - "3000:80"
+
+  rabbitmq: 
+    container_name: rabbitmq_container
+    image: rabbitmq:3.13-rc-management-alpine
+    restart: always
+    environment:
+      RABBITMQ_DEFAULT_USER: "sachin"
+      RABBITMQ_DEFAULT_PASS: "admin1234"
+    ports: 
+      # AMQP protocol port
+      - '5672:5672'
+      # MANAGEMENT UI
+      - '15672:15672'
 
   store:
     build: ./store
