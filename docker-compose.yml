@@ -25,7 +25,7 @@ services:
     depends_on:
       - mongo
     volumes:
-      - ./store/src/app:/usr/src/app
+      - ./store:/app/store
     ports:
       - "3004:3000"
 
@@ -35,7 +35,7 @@ services:
     depends_on:
       - mongo
     volumes:
-      - './users/src/app:/usr/src/app'
+      - ./users:/app/users
     ports:
       - "3006:3000"
 
