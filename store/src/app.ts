@@ -10,7 +10,7 @@ const app:Application = express();
 
 
 app.get('/',(req:Request,res:Response)=>{
-    res.send('from stddddddddore')
+    res.send('from store');
 })
 
 
@@ -19,5 +19,5 @@ const PORT:Number = Number(process.env.PORT);
 
 
 app.listen(PORT,()=>{
-    console.log(`listning on pdddddddort ${PORT}`);
+    console.log(`listning on port ${PORT}`);
 })
